@@ -1,0 +1,48 @@
+#:import MDRaisedButton kivymd.button.MDRaisedButton
+#:import MDCard kivymd.card.MDCard
+#:import MDTextField kivymd.textfields.MDTextField
+
+# Aqui é desenhado toda a parte visual do aplicativo
+# Acima se importa as classes do KivyMD que serão usadas
+# Em baixo define cada parte do app, e no MDRaisedButton 'on_press' passamos
+# o valor do texto de cada campo que nos interessa para
+# a função no sendmail.py através dos id's definidos
+
+BoxLayout:
+  id: layout
+  orientation: 'vertical'
+  padding: 30
+
+  MDTextField:
+    id: email_from
+    hint_text: 'From@gmail.com'
+    size_hint_x: 1
+
+  MDTextField:
+    id: email_pass
+    hint_text: 'Password'
+    size_hint_x: 1
+    password: True
+
+  MDTextField:
+    id: email_to
+    hint_text: 'To@email.com'
+    size_hint_x: 1
+
+  MDTextField:
+    id: subject
+    hint_text: 'Subject'
+    size_hint_x: 1
+
+  MDTextField:
+    id: message
+    hint_text: 'Message'
+    size_hint: 1, .3
+    multiline: True
+
+  MDRaisedButton:
+    id: btn_send
+    size_hint: 1, .2
+    pos: .5, .2
+    text: 'Send'
+    on_press: app.send_mail(email_from.text, email_pass.text, subject.text, email_to.text, message.text)
